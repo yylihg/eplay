@@ -64,15 +64,18 @@ export default class SeeView extends Component {
         return (
             <View style={{flex:1}}>
                 <HeadView title="视频列表"></HeadView>
+                {/*{this.state.user.userType == "teacher"?*/}
+                    {/*<ScrollableTabView renderTabBar={() => <CustomTabBar someProp={'here'} />}>*/}
+                        {/*<SeeTeacherDemoVideoView tabLabel="公益教学"></SeeTeacherDemoVideoView>*/}
+                        {/*<SeeTeacherFormalVideoView tabLabel="专业教学"></SeeTeacherFormalVideoView>*/}
+                    {/*</ScrollableTabView>*/}
+                    {/*:<ScrollableTabView renderTabBar={() => <CustomTabBar someProp={'here'} />}>*/}
+                        {/*<SeeDemoVideoView isLogin={this.state.isLogin} tabLabel="公益教学"></SeeDemoVideoView>*/}
+                        {/*<SeeFormalVideoView isLogin={this.state.isLogin}  tabLabel="专业教学"></SeeFormalVideoView>*/}
+                    {/*</ScrollableTabView> }*/}
                 {this.state.user.userType == "teacher"?
-                    <ScrollableTabView renderTabBar={() => <CustomTabBar someProp={'here'} />}>
                         <SeeTeacherDemoVideoView tabLabel="公益教学"></SeeTeacherDemoVideoView>
-                        <SeeTeacherFormalVideoView tabLabel="专业教学"></SeeTeacherFormalVideoView>
-                    </ScrollableTabView>
-                    :<ScrollableTabView renderTabBar={() => <CustomTabBar someProp={'here'} />}>
-                        <SeeDemoVideoView isLogin={this.state.isLogin} tabLabel="公益教学"></SeeDemoVideoView>
-                        <SeeFormalVideoView isLogin={this.state.isLogin}  tabLabel="专业教学"></SeeFormalVideoView>
-                    </ScrollableTabView> }
+                    :<SeeDemoVideoView isLogin={this.state.isLogin} tabLabel="公益教学"></SeeDemoVideoView>}
 
             </View>
 

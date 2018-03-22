@@ -15,20 +15,15 @@ import  {
 import screen from '../../constants/screen';
 import HeadViewWithLeftBtn from '../common/HeadViewWithLeftBtn';
 import React, {Component} from 'react';
-import ListLine from "../common/ListLine";
 var ReactModule = NativeModules.ReactModule;
 var findNodeHandle = require('findNodeHandle');
 import UserUtils from '../../utils/UserUtils'
-import StudentListPage from './StudentListView'
-import TeacherDetailView from './TeacherDetailView'
-import TeacherTeamListView from './TeacherTeamListView'
-import TeacherDemoVideoView from './TeacherDemoVideoView'
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import CustomTabBar from '../common/CustomTabBar';
 
 
 
-export default class TeacherDetailPage extends Component {
+export default class TeacherDetailView extends Component {
 
     // componentDidMount() {
     //     alert('this.props:' + JSON.stringify(this.props));
@@ -40,7 +35,6 @@ export default class TeacherDetailPage extends Component {
             teacher: {},
             userType: "student",
             isLogin: false,
-            subPage:'demoList'// demoList  students
         }
     }
 
@@ -69,24 +63,51 @@ export default class TeacherDetailPage extends Component {
 
 
     componentDidMount() {
+        this._getTeacherDetail(this.props.id);
         this._initView();
     }
 
+    _getTeacherDetail = function (id) {
+        var context = this;
+        ReactModule.fetch("get", {api: "/teacher/detail.do?userId=" + id }, function (error, response) {
+            console.log('ihg /teacher/detail.do: ', response.data.data)
+            context.setState({
+                teacher:response.data.data || {}
+            });
+            // alert('this.props:' + JSON.stringify(response));
+        });
+    }
 
+    _selectCourse(){
+        if (!this.state.isLogin){
+            ReactModule.pushLoginController(findNodeHandle(this), function (e) {
+                // alert(JSON.stringify(e))
+            })
+            return;
+        }
+        ReactModule.pushReactViewController(findNodeHandle(this), "BookPage", {id: this.props.id});
+    }
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <HeadViewWithLeftBtn title = "教师详细信息"></HeadViewWithLeftBtn>
-                {
-                    <ScrollableTabView renderTabBar={() => <CustomTabBar someProp={'here'} />}>
-                        <TeacherDetailView tabLabel="教师简介"  id = {this.props.id}></TeacherDetailView>
-                        <TeacherDemoVideoView tabLabel="公益视频"  id = {this.props.id}></TeacherDemoVideoView>
-                        <StudentListPage tabLabel="学生风采"  api="/studentVideo/list.do" id = {this.props.id}></StudentListPage>
-                        {/*<TeacherTeamListView tabLabel="小组课程" id = {this.props.id}></TeacherTeamListView>*/}
-                    </ScrollableTabView>
-                }
-
+            <View style={styles.bodyContainer}>
+                <Image style={styles.imageType} source={{uri: this.state.teacher.PHOTO0}}></Image>
+                <View style={{marginRight: 10, flex: 1}}>
+                    <Text style={styles.rowTitle}>{this.state.teacher.NICK_NAME}</Text>
+                    <View style={styles.rowContainer}>
+                        <Text style={styles.rowTitle}>个性签名:</Text>
+                        <Text style={styles.rowDes} >{this.state.teacher.PERSONAL_SIGN}</Text>
+                    </View>
+                    <View style={styles.rowContainer}>
+                        <Text style={styles.rowTitle}>教学经验:</Text>
+                        <Text style={styles.rowDes} >{this.state.teacher.TEACH_EXPERIENCE}</Text>
+                    </View>
+                    <View style={{alignItems:'flex-end'}}>
+                        <TouchableHighlight style={styles.buttonStyle} underlayColor = '#eee' onPress={()=>this._selectCourse()}>
+                            <Text style={styles.buttonText}>约课</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
             </View>
         );
     }
