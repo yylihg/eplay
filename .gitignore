@@ -1,0 +1,6 @@
+React/node_modules
+*log
+React/.idea
+Pods
+LoveForMusic.xcworkspace/xcuserdata
+React/package-lock.json
