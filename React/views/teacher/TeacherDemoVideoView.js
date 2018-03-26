@@ -75,6 +75,12 @@ class TeacherDemoVideoView extends Component {
     }
 
     _onItemPress(item) {
+        if (!this.props.isLogin){
+            ReactModule.pushLoginController(findNodeHandle(this), function (e) {
+                // alert(JSON.stringify(e))
+            })
+            return;
+        }
         ReactModule.pushVideoViewController(findNodeHandle(this), "/member/freeVideoWatch/getVideoUrl.do?videoId="+ item.VIDEO_ID, item.VIDEO_NAME);
     }
 

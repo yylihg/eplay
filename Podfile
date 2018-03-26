@@ -21,7 +21,7 @@ target 'LoveForMusic' do
       'RCTAnimation'
 	]
 	pod "Yoga", :path => "./React/node_modules/react-native/ReactCommon/yoga"
-    pod 'AFNetworking', '~> 3.0'
+#    pod 'AFNetworking', '~> 3.0'
     pod 'ZFPlayer'
     pod 'ZFDownload'
     pod 'Masonry'

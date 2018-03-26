@@ -23,17 +23,9 @@ import Banner from'./Banner';
 var ReactModule = NativeModules.ReactModule;
 import RequestUtils from '../../utils/RequestUtils';
 var findNodeHandle = require('findNodeHandle');
-
+import UserUtils from '../../utils/UserUtils'
 
 export default class HomeView extends Component {
-
-    _onPressButton(id) {
-        console.log('ihg',id +  "You tapped the button!");
-    }
-    //点击事件
-    _onMenuClick(title, tag) {
-        Alert.alert('提示', '你点击了:' + title + " Tag:" + tag);
-    }
 
     //noinspection JSAnnotator
     constructor(props: Object) {
@@ -46,14 +38,34 @@ export default class HomeView extends Component {
                 { title: '钢琴', image: require('../../img/Home/icon_piano.png') , code: "PIANO" }
             ],
             teachers: [],
-            videos: []
+            videos: [],
+            userType: "student",
+            isLogin: false,
         }
     }
 
     componentDidMount() {
+        this._initView();
         this._getTop10Teacher();
         this._getTop10Video();
     }
+
+    _initView = function () {
+        var context = this;
+        UserUtils.getUser(function (result) {
+            if (result.userToken && !context.setState.isLogin){
+                context.setState({
+                    isLogin:true,
+                    userType:result.roleId == "4"?'student':'teacher'
+                })
+            }else if(!result.userToken){
+                context.setState({
+                    isLogin:false
+                })
+            }
+        })
+    }
+
 
     _getTop10Teacher = function () {
         var context = this;
@@ -148,7 +160,12 @@ export default class HomeView extends Component {
     }
     //noinspection JSAnnotator
     onVideoItemSelected(index: number) {
-
+        if (!this.state.isLogin){
+            ReactModule.pushLoginController(findNodeHandle(this), function (e) {
+                // alert(JSON.stringify(e))
+            })
+            return;
+        }
         ReactModule.pushVideoViewController(findNodeHandle(this), "/member/freeVideoWatch/getVideoUrl.do?videoId="+ this.state.videos[index].VIDEO_ID, this.state.videos[index].VIDEO_NAME);
         // Alert.alert('提示', '你点击了:' + JSON.stringify(video));
     }

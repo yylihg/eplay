@@ -24,18 +24,40 @@ let totalCount = 0;
 let currentPage = 0;
 import HeadViewWithLeftBtn from '../common/HeadViewWithLeftBtn';
 var findNodeHandle = require('findNodeHandle');
+
+import UserUtils from '../../utils/UserUtils'
+
 class VideoListPage extends Component {
 
     //noinspection JSAnnotator
     constructor(props: Object) {
         super(props)
         this.state = {
-            videos: []
+            videos: [],
+            userType: "student",
+            isLogin: false,
         }
     }
 
     componentDidMount() {
+        this._initView();
         this._getVideoList(currentPage);
+    }
+
+    _initView = function () {
+        var context = this;
+        UserUtils.getUser(function (result) {
+            if (result.userToken && !context.setState.isLogin){
+                context.setState({
+                    isLogin:true,
+                    userType:result.roleId == "4"?'student':'teacher'
+                })
+            }else if(!result.userToken){
+                context.setState({
+                    isLogin:false
+                })
+            }
+        })
     }
     _getVideoList = function (page) {
         var context = this;
@@ -78,6 +100,12 @@ class VideoListPage extends Component {
     }
 
     _onItemPress(item) {
+        if (!this.props.isLogin){
+            ReactModule.pushLoginController(findNodeHandle(this), function (e) {
+                // alert(JSON.stringify(e))
+            })
+            return;
+        }
         ReactModule.pushVideoViewController(findNodeHandle(this), "/member/freeVideoWatch/getVideoUrl.do?videoId="+ item.VIDEO_ID, item.VIDEO_NAME);
     }
 
