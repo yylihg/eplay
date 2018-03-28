@@ -64,7 +64,7 @@
 
 -(void)getAccessToken{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/accessToken/find.do?appId=ep20170712235111&secret=34463963d038419e859e4f62f47c85de" ] parameters:nil
+    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],@"/api/accessToken/find.do?appId=ep20170712235111&secret=34463963d038419e859e4f62f47c85de" ] parameters:nil
         progress:^(NSProgress * _Nonnull downloadProgress) {
             
         }
@@ -93,7 +93,7 @@
     [parameters setObject:self.verifyCodeEt.text  forKey:@"mobileCode"];
     [parameters setObject:[NSString stringWithFormat:@"%d", (int)[self.UserTypeSegment selectedSegmentIndex]]forKey:@"isTeacher"];
      NSLog(@"ihg parameters %@",parameters);
-    [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/register/doRegister.do" ]  parameters:parameters
+    [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],@"/api/register/doRegister.do" ]  parameters:parameters
          progress:^(NSProgress * _Nonnull uploadProgress) {
              
          } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -167,11 +167,11 @@
         return;
     }
     
-    NSLog(@"%@",[NSString stringWithFormat:@"%@%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/register/findMobileCode.do?mobile=", self.userNameEt.text] );
+    NSLog(@"%@",[NSString stringWithFormat:@"%@%@%@" , [Utils getConnectIp],@"/api/register/findMobileCode.do?mobile=", self.userNameEt.text] );
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:[Utils getUserInfo].accessToken forHTTPHeaderField:@"access-token"];
-    [manager GET: [NSString stringWithFormat:@"%@%@%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/register/findMobileCode.do?mobile=", self.userNameEt.text, @"&type=1"] parameters:nil
+    [manager GET: [NSString stringWithFormat:@"%@%@%@%@" , [Utils getConnectIp],@"/api/register/findMobileCode.do?mobile=", self.userNameEt.text, @"&type=1"] parameters:nil
         progress:^(NSProgress * _Nonnull downloadProgress) {
             
         }

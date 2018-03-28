@@ -108,7 +108,7 @@
 
 -(void)getAccessToken{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/accessToken/find.do?appId=ep20170712235111&secret=34463963d038419e859e4f62f47c85de" ] parameters:nil
+    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],@"/api/accessToken/find.do?appId=ep20170712235111&secret=34463963d038419e859e4f62f47c85de" ] parameters:nil
         progress:^(NSProgress * _Nonnull downloadProgress) {
         
         }
@@ -133,7 +133,7 @@
     [parameters setObject:self.passwordET.text forKey:@"password"];
 //    [parameters setObject:@"15959445322"forKey:@"username"];
 //    [parameters setObject:@"wbk123" forKey:@"password"];
-    [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/login/login.do" ]  parameters:parameters
+    [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],@"/api/login/login.do" ]  parameters:parameters
          progress:^(NSProgress * _Nonnull uploadProgress) {
         
          } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

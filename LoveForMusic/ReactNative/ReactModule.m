@@ -164,7 +164,7 @@ RCT_EXPORT_METHOD(doLogin:(NSString *)username password:(NSString *)password cal
     [parameters setObject:username forKey:@"username"];
     [parameters setObject:password forKey:@"password"];
     
-    [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/login/login.do" ]  parameters:parameters
+    [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],@"/api/login/login.do" ]  parameters:parameters
          progress:^(NSProgress * _Nonnull uploadProgress) {
              
          } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -188,7 +188,7 @@ RCT_EXPORT_METHOD(doLogin:(NSString *)username password:(NSString *)password cal
 
 RCT_EXPORT_METHOD(getAccessToken:(RCTResponseSenderBlock)callback){
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],@"/api/accessToken/find.do?appId=ep20170712235111&secret=34463963d038419e859e4f62f47c85de" ] parameters:nil
+    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],@"/api/accessToken/find.do?appId=ep20170712235111&secret=34463963d038419e859e4f62f47c85de" ] parameters:nil
         progress:^(NSProgress * _Nonnull downloadProgress) {
             
         }
@@ -209,9 +209,9 @@ RCT_EXPORT_METHOD(fetch:(NSString *)method params:(NSDictionary *)params callbac
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:[Utils getUserInfo].accessToken forHTTPHeaderField:@"access-token"];
     [manager.requestSerializer setValue:[Utils getUserInfo].userToken forHTTPHeaderField:@"user-token"];
-    NSLog(@"ihg url: %@",[NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],[params objectForKey:@"api"]]);
+    NSLog(@"ihg url: %@",[NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],[params objectForKey:@"api"]]);
     if ([method isEqualToString:@"get"]) {
-        [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],[params objectForKey:@"api"]] parameters:nil
+        [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],[params objectForKey:@"api"]] parameters:nil
             progress:^(NSProgress * _Nonnull downloadProgress) {
                 
             }
@@ -226,7 +226,7 @@ RCT_EXPORT_METHOD(fetch:(NSString *)method params:(NSDictionary *)params callbac
              }
          ];
     }else if ([method isEqualToString:@"post"]) {
-        [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],[params objectForKey:@"api"] ]  parameters:[params objectForKey:@"params"]
+        [manager POST: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],[params objectForKey:@"api"] ]  parameters:[params objectForKey:@"params"]
              progress:^(NSProgress * _Nonnull uploadProgress) {
                  
              } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

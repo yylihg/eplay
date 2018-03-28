@@ -83,7 +83,7 @@
     [manager.requestSerializer setValue:[Utils getUserInfo].accessToken forHTTPHeaderField:@"access-token"];
     [manager.requestSerializer setValue:[Utils getUserInfo].userToken forHTTPHeaderField:@"user-token"];
   
-    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getStringFromPlist:@"connectIp"],videoApi ] parameters:nil
+    [manager GET: [NSString stringWithFormat:@"%@%@" , [Utils getConnectIp],videoApi ] parameters:nil
             progress:^(NSProgress * _Nonnull downloadProgress) {
                 
             }

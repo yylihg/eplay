@@ -50,6 +50,13 @@ export default class HomeView extends Component {
         this._getTop10Video();
     }
 
+
+    componentWillReceiveProps(){
+        if (this.props.viewControllerState == "resume" ){
+            this._initView();
+        }
+    }
+
     _initView = function () {
         var context = this;
         UserUtils.getUser(function (result) {

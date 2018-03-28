@@ -57,4 +57,8 @@
     return  [dict objectForKey:key];
 }
 
++(NSString *)getConnectIp{
+    return @"https://www.ejtoo.com/api";
+}
+
 @end

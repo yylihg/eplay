@@ -44,6 +44,11 @@ class VideoListPage extends Component {
         this._getVideoList(currentPage);
     }
 
+    componentWillReceiveProps(){
+        if (this.props.viewControllerState == "resume" ){
+            this._initView();
+        }
+    }
     _initView = function () {
         var context = this;
         UserUtils.getUser(function (result) {
@@ -100,7 +105,7 @@ class VideoListPage extends Component {
     }
 
     _onItemPress(item) {
-        if (!this.props.isLogin){
+        if (!this.state.isLogin){
             ReactModule.pushLoginController(findNodeHandle(this), function (e) {
                 // alert(JSON.stringify(e))
             })

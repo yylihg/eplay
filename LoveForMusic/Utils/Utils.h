@@ -21,4 +21,6 @@
 +(NSString *)getCurrentTime;
 //获取当前系统日期
 +(NSString *)getCurrentDate;
+
++(NSString *)getConnectIp;
 @end
