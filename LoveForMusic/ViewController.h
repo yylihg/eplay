@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ConnectUtils.h"
 @class ViewController;
 @protocol ViewControllerDelegate <NSObject>
 -(void)loginSuccess:(id) responseObject;

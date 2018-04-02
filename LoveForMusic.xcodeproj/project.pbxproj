@@ -25,7 +25,6 @@
 		4D6491871E91347F009860E3 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D64917F1E91347F009860E3 /* SBJsonBase.m */; };
 		4D6491881E91347F009860E3 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6491811E91347F009860E3 /* SBJsonParser.m */; };
 		4D6491891E91347F009860E3 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6491831E91347F009860E3 /* SBJsonWriter.m */; };
-		4D6491911E91348B009860E3 /* ConnectUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D64918C1E91348B009860E3 /* ConnectUtils.m */; };
 		4D6491921E91348B009860E3 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D64918E1E91348B009860E3 /* Utils.m */; };
 		4D6491931E91348B009860E3 /* JsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6491901E91348B009860E3 /* JsonUtils.m */; };
 		4D6491971E91492A009860E3 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6491961E91492A009860E3 /* UserModel.m */; };
@@ -164,8 +163,6 @@
 		4D6491811E91347F009860E3 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		4D6491821E91347F009860E3 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4D6491831E91347F009860E3 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		4D64918B1E91348B009860E3 /* ConnectUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectUtils.h; sourceTree = "<group>"; };
-		4D64918C1E91348B009860E3 /* ConnectUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectUtils.m; sourceTree = "<group>"; };
 		4D64918D1E91348B009860E3 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		4D64918E1E91348B009860E3 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		4D64918F1E91348B009860E3 /* JsonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtils.h; sourceTree = "<group>"; };
@@ -356,8 +353,6 @@
 		4D64918A1E91348B009860E3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4D64918B1E91348B009860E3 /* ConnectUtils.h */,
-				4D64918C1E91348B009860E3 /* ConnectUtils.m */,
 				4D64918D1E91348B009860E3 /* Utils.h */,
 				4D64918E1E91348B009860E3 /* Utils.m */,
 				4D64918F1E91348B009860E3 /* JsonUtils.h */,
@@ -801,7 +796,6 @@
 				4DCBD9731E75A0C10039282D /* ReactViewController.m in Sources */,
 				4DCBD9721E75A0C10039282D /* CalendarManager.m in Sources */,
 				4DCBD9391E7580E90039282D /* AppDelegate.m in Sources */,
-				4D6491911E91348B009860E3 /* ConnectUtils.m in Sources */,
 				4D6491881E91347F009860E3 /* SBJsonParser.m in Sources */,
 				4DE322381F41F12800F89B8F /* VideoViewController.m in Sources */,
 				4D8424321EB7724B00724706 /* ReactModule.m in Sources */,

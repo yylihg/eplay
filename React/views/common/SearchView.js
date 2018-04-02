@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         borderColor: '#ccc',
         borderRadius: 10,
-        borderWidth: 0.5,
+        borderWidth: 1,
     },
     searchImg: {
         top: 15,

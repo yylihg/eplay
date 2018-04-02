@@ -14,8 +14,6 @@
 
 @implementation BaseViewController
 @synthesize ToastView;
-@synthesize mConnector;
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,8 +51,4 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//连接网络成功后
--(void)connectFinishAction:(NSURLConnection *)connection resultJson:(NSString *)json{
-    
-}
 @end

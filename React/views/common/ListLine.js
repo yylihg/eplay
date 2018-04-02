@@ -18,7 +18,7 @@ class ListLine extends Component {
 
 const styles = StyleSheet.create({
     lineStyle: {
-        height: 0.5,
+        height: 1,
         backgroundColor: '#ccc',
         marginRight: 10,
         marginLeft: 10

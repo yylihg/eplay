@@ -166,10 +166,6 @@
 }
 
 
-//-(void)goMainView{
-//    MainViewController *mMainViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mainView"];
-//    [self.navigationController pushViewController:mMainViewController animated:YES];
-//}
 
 
 - (IBAction)resetPasswordBtn:(id)sender {
