@@ -46,7 +46,7 @@ class TeacherListPage extends Component {
             }else {
                 totalCount = response.data.total;
                 currentIndex = context.state.teachers.length;
-                let teacherTemp = response.data.list;
+                let teacherTemp = response.data.list || [];
                 let teacherList = currentPage == 0? []:context.state.teachers;
                 for (let i = 0; i < teacherTemp.length; i++){
                     teacherTemp[i].key = currentIndex + "";
