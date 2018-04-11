@@ -15,6 +15,9 @@ import  {
 import React, {Component} from 'react';
 var ReactModule = NativeModules.ReactModule;
 var findNodeHandle = require('findNodeHandle');
+import { ifIphoneX } from 'react-native-iphone-x-helper'
+
+
 export default class HeadViewWithLeftBtn extends Component {
 
     _back = function () {
@@ -24,7 +27,7 @@ export default class HeadViewWithLeftBtn extends Component {
 
     render() {
         return (
-            <View style={styles.headerView}>
+            <View style={[styles.headerView , ifIphoneX?styles.phonexTop:styles.standardTop ]}>
                 <TouchableHighlight underlayColor = '#eee' onPress={()=>this._back()}>
                     <View style={styles.backBtn} onpress>
                         <Image style={styles.backImg} source={require('../../img/icon_back.png')} />
@@ -37,10 +40,16 @@ export default class HeadViewWithLeftBtn extends Component {
 }
 
 const styles = StyleSheet.create({
-    headerView:{
+    standardTop: {
         paddingTop: 20,
+    },
+    phonexTop: {
+        marginTop: 50,
+
+    },
+    headerView:{
         backgroundColor : '#0168ae',
-        height: 70,
+        height: 50,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'

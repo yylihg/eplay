@@ -59,6 +59,7 @@
                                                   initialProperties:params
                                                       launchOptions:nil];
     self.view = self.rootView;
+//    [self.rnContainerView addSubview:self.rootView];
     //  也可addSubview，自定义大小位置
 }
 

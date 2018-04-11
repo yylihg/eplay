@@ -239,6 +239,7 @@ export default class IndividualView extends Component {
 }
 
 const styles = StyleSheet.create({
+
     container: {
         flex: 1
     },

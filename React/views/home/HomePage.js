@@ -24,6 +24,8 @@ var ReactModule = NativeModules.ReactModule;
 import RequestUtils from '../../utils/RequestUtils';
 var findNodeHandle = require('findNodeHandle');
 import UserUtils from '../../utils/UserUtils'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
+
 
 export default class HomeView extends Component {
 
@@ -116,9 +118,9 @@ export default class HomeView extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.bodyContainer}>
+            <ScrollView contentContainerStyle={[styles.bodyContainer, ifIphoneX?styles.phonexTop:styles.standardTop ]}>
                 <View style={styles.viewPager}>
-                    <Banner></Banner>
+                    <Banner ></Banner>
                 </View>
                 <GridView datas={this.state.instruments} onGridSelected={(index) => this.onGridSelected(index)}/>
                 <View style={styles.hotTeacher}>
@@ -136,7 +138,7 @@ export default class HomeView extends Component {
                 </View>
                 <HotVideoList datas={this.state.videos} onItemSelected={(index) => this.onVideoItemSelected(index)}/>
             </ScrollView>
-            <View style={styles.searchBar }>
+            <View style={[styles.searchBar , ifIphoneX?styles.phonexTop:styles.standardTop ] }>
                 {/*<TouchableHighlight style={{overflow:'hidden'}} underlayColor = '#eee' onPress={()=>this._onPressButton(1)}>*/}
                 {/*<Text style={styles.searchBtn}>杭州</Text>*/}
                 {/*</TouchableHighlight>*/}
@@ -180,11 +182,16 @@ export default class HomeView extends Component {
 }
 
 const styles = StyleSheet.create({
+    standardTop: {
+        paddingTop: 20
+    },
+    phonexTop: {
+        paddingTop: 50
+    },
     container: {
     },
     bodyContainer:{
         paddingBottom: 30,
-        marginTop: -20,
     },
     searchBar: {
         flexDirection: 'row',
@@ -193,7 +200,6 @@ const styles = StyleSheet.create({
         top: 0,
         left:0,
         right: 0,
-        marginTop: 20,
         alignItems: 'center',
         height: 48,
     },

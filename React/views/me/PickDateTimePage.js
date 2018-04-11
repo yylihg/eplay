@@ -16,6 +16,9 @@ import  {
 import React, {Component} from 'react';
 var ReactModule = NativeModules.ReactModule;
 var findNodeHandle = require('findNodeHandle');
+
+import { ifIphoneX } from 'react-native-iphone-x-helper'
+
 export default class PickDatePage extends Component {
 
 
@@ -54,7 +57,7 @@ export default class PickDatePage extends Component {
         let context = this;
         return (
             <View>
-                <View style={styles.headerView}>
+                <View style={[styles.headerView, ifIphoneX?styles.phonexTop:styles.standardTop ]}>
                     <TouchableHighlight style={styles.backBtn} underlayColor = '#eee' onPress={()=>this._back()}>
                         <Image style={styles.backImg} source={require('../../img/icon_back.png')} />
                     </TouchableHighlight>
@@ -78,10 +81,16 @@ export default class PickDatePage extends Component {
 }
 
 const styles = StyleSheet.create({
-    headerView:{
+    standardTop: {
         paddingTop: 20,
+    },
+    phonexTop: {
+        marginTop: 50,
+
+    },
+    headerView:{
         backgroundColor : '#0168ae',
-        height: 70,
+        height: 50,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'

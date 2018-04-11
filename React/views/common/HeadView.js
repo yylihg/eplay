@@ -10,12 +10,13 @@ import  {
 } from 'react-native';
 
 import React, {Component} from 'react';
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 
 class HeadView extends Component {
 
     render() {
         return (
-            <View style={styles.headerView}>
+            <View style={[styles.headerView, ifIphoneX?styles.phonexTop:styles.standardTop ]}>
                 <Text style={styles.headerViewTitle}>{this.props.title}</Text>
             </View>
         );
@@ -23,14 +24,20 @@ class HeadView extends Component {
 }
 
 const styles = StyleSheet.create({
+    standardTop: {
+        paddingTop: 20,
+    },
+    phonexTop: {
+        marginTop: 50,
+
+    },
     headerView:{
         backgroundColor : '#0168ae',
-        height: 60,
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center'
     },
     headerViewTitle:{
-        marginTop:10,
         fontSize: 18,
         color: "#fff"
     }

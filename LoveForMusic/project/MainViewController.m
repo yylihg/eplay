@@ -82,9 +82,12 @@
     NSDictionary *dict =  [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:143/255.0 green:143/255.0 blue:143/255.0 alpha:1.0],
                            NSForegroundColorAttributeName,nil];
     MainMenuModel *mainMenuModel =  [[MainMenuModel alloc] init];
+    UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     for (int i = 0; i < tabItemsArray.count; i++) {
         mainMenuModel = [tabItemsArray objectAtIndex: i];
-        ReactViewController *mReactViewController = [[ReactViewController alloc] init];
+        ReactViewController *mReactViewController = 
+        [stroyboard instantiateViewControllerWithIdentifier:@"reactView"];
+        
         mReactViewController.component = mainMenuModel.component;
         UIImage *icon_main_forewarn_select = [[UIImage imageNamed:mainMenuModel.selectedImg] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
